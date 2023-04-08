@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 
 export default function ListScrollComp() {
     const [data, setData] = useState([]);
@@ -20,25 +20,46 @@ export default function ListScrollComp() {
         getUsersData();
     }, []);
 
-
-    const removeItem = (id) => {
-        setLoading(true);
-        const removeItemPromise = new Promise((resolve, reject) => {
+    const removeItemPromise = function (id) {
+        return new Promise((resolve, reject) => {
+            setLoading(true);
             let filteredData = data.filter(item => item.id != id);
             if (filteredData)
                 resolve(filteredData);
             else
-                reject("filter operation still in progress");
-        })
+                reject("something went wrong");
+        });
+    };
 
-        removeItemPromise
-            .then((res) => {
-                setTimeout(() => {
-                    setLoading(false);
-                    setData(res);
-                }, 2000);
-            })
-            .catch(error => console.log(error));
+    const removeItem = (item) => {
+        if (item.completed) {
+            Alert.alert('Alert', 'Do you want to remove the task',
+                [{ text: 'Cancel', onPress: () => console.log("operation cancelled") },
+                {
+                    text: 'Confirm', onPress: () => {
+                        removeItemPromise(item.id)
+                            .then((res) => {
+                                setTimeout(() => {
+                                    setLoading(false);
+                                    setData(res);
+                                }, 1000);
+                            })
+                            .catch(error => console.log(error));
+                    }
+                }]);
+        } else {
+            Alert.alert('Alert', 'Do you want to make this task complete', [
+                { text: 'Cancel', onPress: () => console.log("operation cancelled") },
+                {
+                    text: 'Confirm', onPress: () => {
+                        let tempData = data;
+                        let objectToUpdate = data.find((tempItem) => tempItem.id == item.id);
+                        objectToUpdate.completed = true;
+                        setData(tempData);
+                    }
+                }
+            ])
+        }
     }
 
     return (
@@ -59,7 +80,7 @@ export default function ListScrollComp() {
                         renderItem={({ item }) => (
                             <View style={styles.item}>
                                 <Text style={styles.title}>{item.title}</Text>
-                                <TouchableOpacity style={{ width: "30%" }} onPress={() => removeItem(item.id)}>
+                                <TouchableOpacity style={{ width: "30%" }} onPress={() => removeItem(item)}>
                                     <Text style={[styles.status, { color: item.completed ? "green" : "red" }]}>{item.completed ? "Complete" : "Incomplete"}</Text>
                                 </TouchableOpacity>
                             </View>

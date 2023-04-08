@@ -1,11 +1,11 @@
-import ListScrollComp from './ListScrollComp';
-import StateTutComp from './StateTutComp';
-import TextStyleIntro from './TextStyleIntro';
+import ListScrollComp from './components/ListScrollComp';
+import StateTutComp from './components/StateTutComp';
+import TextStyleIntro from './components/TextStyleIntro';
 
 export default function App() {
   return (
     // <TextStyleIntro />
-    // <StateTutComp />
-    <ListScrollComp />
+    <StateTutComp />
+    // <ListScrollComp />
   );
 }

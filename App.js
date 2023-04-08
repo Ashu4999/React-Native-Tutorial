@@ -5,7 +5,7 @@ import TextStyleIntro from './components/TextStyleIntro';
 export default function App() {
   return (
     // <TextStyleIntro />
-    <StateTutComp />
-    // <ListScrollComp />
+    // <StateTutComp />
+    <ListScrollComp />
   );
 }

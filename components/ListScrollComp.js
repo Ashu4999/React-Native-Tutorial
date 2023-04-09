@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function ListScrollComp() {
     const [data, setData] = useState([]);
@@ -20,37 +21,65 @@ export default function ListScrollComp() {
         getUsersData();
     }, []);
 
-
-    const removeItem = (id) => {
-        setLoading(true);
-        const removeItemPromise = new Promise((resolve, reject) => {
+    const removeItemPromise = function (id) {
+        return new Promise((resolve, reject) => {
+            setLoading(true);
             let filteredData = data.filter(item => item.id != id);
             if (filteredData)
                 resolve(filteredData);
             else
-                reject("filter operation still in progress");
-        })
+                reject("something went wrong");
+        });
+    };
 
-        removeItemPromise
-            .then((res) => {
-                setTimeout(() => {
-                    setLoading(false);
-                    setData(res);
-                }, 2000);
-            })
-            .catch(error => console.log(error));
+    const removeItem = (item) => {
+        if (item.completed) {
+            Alert.alert('Alert', 'Do you want to remove the task',
+                [{ text: 'Cancel', onPress: () => console.log("operation cancelled") },
+                {
+                    text: 'Confirm', onPress: () => {
+                        removeItemPromise(item.id)
+                            .then((res) => {
+                                setTimeout(() => {
+                                    setLoading(false);
+                                    setData(res);
+                                }, 500);
+                            })
+                            .catch(error => console.log(error));
+                    }
+                }]);
+        } else {
+            Alert.alert('Alert', 'Do you want to make this task complete', [
+                { text: 'Cancel', onPress: () => console.log("operation cancelled") },
+                {
+                    text: 'Confirm', onPress: () => {
+                        // let tempData = data;
+                        // let objectToUpdate = data.find((tempItem) => tempItem.id == item.id);
+                        // objectToUpdate.completed = true;
+                        // setData(tempData);
+                        setLoading(true);
+                        setData(prevData => prevData.map((tempItem, index, self) => {
+                            if (index == self.length - 1) {
+                                setTimeout(() => { setLoading(false); }, 500);
+                            }
+                            return tempItem.id == item.id ? { ...tempItem, completed: true } : tempItem
+                        }));
+                    }
+                }
+            ])
+        }
     }
 
     return (
         <View style={styles.container2}>
-            <Text style={{ fontSize: 20, textAlign: "center", fontWeight: "bold", marginBottom: 10 }}>List Assignment</Text>
+            <Text style={{ fontSize: 20, textAlign: "center", fontWeight: "bold" }}>List Assignment</Text>
 
             {loading ?
                 <View style={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <ActivityIndicator size="large" color="pink" />
                 </View>
                 :
-                <View>
+                <View style={{ flex: 1, gap: 10 }}>
                     <Text style={{ fontSize: 15, textAlign: "center" }}>{`Data Length ${data.length}`}</Text>
                     <FlatList
                         // numColumns={2} //used to specify no of columns on each row
@@ -59,9 +88,12 @@ export default function ListScrollComp() {
                         renderItem={({ item }) => (
                             <View style={styles.item}>
                                 <Text style={styles.title}>{item.title}</Text>
-                                <TouchableOpacity style={{ width: "30%" }} onPress={() => removeItem(item.id)}>
+                                <View style={{ flex: 1, flexDirection: "row", gap: 5, alignItems: "center" }}>
+                                    <TouchableOpacity onPress={() => removeItem(item)}>
+                                        <MaterialIcons name={item.completed ? "delete" : "done"} size={24} color={item.completed ? "red" : "green"} />
+                                    </TouchableOpacity>
                                     <Text style={[styles.status, { color: item.completed ? "green" : "red" }]}>{item.completed ? "Complete" : "Incomplete"}</Text>
-                                </TouchableOpacity>
+                                </View>
                             </View>
                         )}
                     />
@@ -85,16 +117,11 @@ export default function ListScrollComp() {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 10,
-    },
     container2: {
+        flex: 1,
         marginHorizontal: 10,
-        marginVertical: 30
+        marginVertical: 30,
+        gap: 10,
     },
     item: {
         backgroundColor: "pink",
@@ -103,16 +130,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         padding: 20,
-        // flexWrap: "wrap",
+        gap: 5
     },
     title: {
-        width: "65%",
+        flex: 2,
         fontSize: 17,
         paddingHorizontal: 5
     },
     status: {
         fontSize: 17,
-        paddingHorizontal: 5,
         textAlign: "center"
     }
 });

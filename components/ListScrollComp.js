@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { globalStyles } from '../styles/global';
 
 export default function ListScrollComp() {
     const [data, setData] = useState([]);
@@ -71,7 +72,7 @@ export default function ListScrollComp() {
     }
 
     return (
-        <View style={styles.container2}>
+        <View style={globalStyles.container2}>
             <Text style={{ fontSize: 20, textAlign: "center", fontWeight: "bold" }}>List Assignment</Text>
 
             {loading ?
@@ -86,13 +87,13 @@ export default function ListScrollComp() {
                         keyExtractor={(item) => item.id} //by default take key name as key ow do this.
                         data={data}
                         renderItem={({ item }) => (
-                            <View style={styles.item}>
-                                <Text style={styles.title}>{item.title}</Text>
+                            <View style={globalStyles.item}>
+                                <Text style={globalStyles.title}>{item.title}</Text>
                                 <View style={{ flex: 1, flexDirection: "row", gap: 5, alignItems: "center" }}>
                                     <TouchableOpacity onPress={() => removeItem(item)}>
                                         <MaterialIcons name={item.completed ? "delete" : "done"} size={24} color={item.completed ? "red" : "green"} />
                                     </TouchableOpacity>
-                                    <Text style={[styles.status, { color: item.completed ? "green" : "red" }]}>{item.completed ? "Complete" : "Incomplete"}</Text>
+                                    <Text style={[globalStyles.status, { color: item.completed ? "green" : "red" }]}>{item.completed ? "Complete" : "Incomplete"}</Text>
                                 </View>
                             </View>
                         )}
@@ -106,39 +107,12 @@ export default function ListScrollComp() {
             {/*<ScrollView>
           {
             data.map((item, index) =>
-              <View style={styles.item} key={index}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={[styles.status, { color: item.completed ? "green" : "red" }]}>{item.completed ? "Complete" : "Incomplete"}</Text>
+              <View style={globalStyles.item} key={index}>
+                <Text style={globalStyles.title}>{item.title}</Text>
+                <Text style={[globalStyles.status, { color: item.completed ? "green" : "red" }]}>{item.completed ? "Complete" : "Incomplete"}</Text>
               </View>)
           }
         </ScrollView>*/}
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container2: {
-        flex: 1,
-        marginHorizontal: 10,
-        marginVertical: 30,
-        gap: 10,
-    },
-    item: {
-        backgroundColor: "pink",
-        marginVertical: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: 20,
-        gap: 5
-    },
-    title: {
-        flex: 2,
-        fontSize: 17,
-        paddingHorizontal: 5
-    },
-    status: {
-        fontSize: 17,
-        textAlign: "center"
-    }
-});

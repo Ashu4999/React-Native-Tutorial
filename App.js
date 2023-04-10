@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { ListScrollComp, TextStyleIntro, StateTutComp } from "./components";
+import Navigator from './routes/lessonStack';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
@@ -15,9 +14,7 @@ export default function App() {
 
   if (isFontLoaded) {
     return (
-      // <TextStyleIntro />
-      // <StateTutComp />
-      <ListScrollComp />
+      <Navigator />
     );
   } else {
     return (

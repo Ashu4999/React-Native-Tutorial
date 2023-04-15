@@ -65,5 +65,34 @@ export const globalStyles = StyleSheet.create({
     status: {
         fontSize: 17,
         textAlign: "center"
+    },
+
+    //LessonListComp Css
+    lessonListContainer: {
+        flex: 1,
+        margin: 30,
+    },
+    lessonItemContainer: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
+        marginVertical: 10,
+        backgroundColor: "yellow",
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#000'
+    },
+    lessonDetails: {
+        flex: 3
+    },
+    lessonBtnView: {
+        flex: 1
+    },
+    textTitle: {
+        fontFamily: "nunito-bold",
+    },
+    textSubtitle: {
+        fontFamily: "nunito-regular",
     }
 });

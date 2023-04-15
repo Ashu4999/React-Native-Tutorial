@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Navigator from './routes/lessonStack';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';

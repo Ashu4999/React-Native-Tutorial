@@ -115,6 +115,19 @@ export const globalStyles = StyleSheet.create({
         textAlign: "center",
     },
 
+    //ModalForm
+    form: {
+        flex: 1,
+        justifyContent: "center",
+        marginHorizontal: 20,
+    },
+    close: { width: "100%", textAlign: "right", marginBottom: 10 },
+    formInputStyle: {
+        borderWidth: 1,
+        borderColor: "#777",
+        padding: 10,
+        width: "100%",
+    },
     //extraa
     rowVerticalCenter: { flexDirection: "row", alignItems: "center", gap: 5 }
 });

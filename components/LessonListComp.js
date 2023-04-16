@@ -15,7 +15,7 @@ export default function LessonListComp({ navigation }) {
                 keyExtractor={item => item.id}
                 data={lessonData}
                 renderItem={({ item }) => {
-                    return (<View style={globalStyles.lessonItemContainer}>
+                    return (<View style={[globalStyles.lessonItemContainer, globalStyles.lessonItemContainer]}>
                         <View style={globalStyles.lessonDetails}>
                             <Text style={globalStyles.textTitle}>{item.name}</Text>
                             <Text style={globalStyles.textSubtitle}>{item.desc}</Text>

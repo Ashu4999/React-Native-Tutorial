@@ -81,7 +81,14 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: "yellow",
         padding: 10,
         borderWidth: 1,
-        borderColor: '#000'
+        borderColor: '#000',
+    },
+    card: {
+        borderRadius: 5,
+        elevation: 5,
+        shadowColor: "#333",
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
     },
     lessonDetails: {
         flex: 3
@@ -94,5 +101,12 @@ export const globalStyles = StyleSheet.create({
     },
     textSubtitle: {
         fontFamily: "nunito-regular",
-    }
+    },
+
+    //About
+    aboutText: {
+        fontFamily: "nunito-bold",
+        fontSize: 17,
+        textAlign: "center",
+    },
 });

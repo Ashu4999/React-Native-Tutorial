@@ -87,7 +87,7 @@ export default function ListScrollComp() {
                         keyExtractor={(item) => item.id} //by default take key name as key ow do this.
                         data={data}
                         renderItem={({ item }) => (
-                            <View style={globalStyles.item}>
+                            <View style={[globalStyles.item, globalStyles.card]}>
                                 <Text style={globalStyles.title}>{item.title}</Text>
                                 <View style={{ flex: 1, flexDirection: "row", gap: 5, alignItems: "center" }}>
                                     <TouchableOpacity onPress={() => removeItem(item)}>

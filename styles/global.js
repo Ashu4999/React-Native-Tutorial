@@ -102,6 +102,11 @@ export const globalStyles = StyleSheet.create({
     textSubtitle: {
         fontFamily: "nunito-regular",
     },
+    diffcultyIcon: {
+        width: 30,
+        height: 30,
+        borderRadius: 5,
+    },
 
     //About
     aboutText: {
@@ -109,4 +114,16 @@ export const globalStyles = StyleSheet.create({
         fontSize: 17,
         textAlign: "center",
     },
+
+    //extraa
+    rowVerticalCenter: { flexDirection: "row", alignItems: "center", gap: 5 }
 });
+
+export const images = {
+    difficultyIcons: {
+        "easiest": require("../assets/difficulty/easiest.png"),
+        "easy": require("../assets/difficulty/easy.png"),
+        "normal": require("../assets/difficulty/normal.png"),
+        "hard": require("../assets/difficulty/hard.png"),
+    }
+}

@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { View, FlatList, Text, Button } from 'react-native';
-import { globalStyles } from '../styles/global';
+import { View, FlatList, Text, Button, Image } from 'react-native';
+import { globalStyles, images } from '../styles/global';
 
 export default function LessonListComp({ navigation }) {
     const [lessonData, setLessonData] = useState([
-        { id: 1, name: "First Lesson", desc: "Intro of react native simple componets and styles", compLinkName: "textStyleLesson" },
-        { id: 2, name: "States and inputs Lesson", desc: "react states and how to take input from user", compLinkName: "stateLesson" },
-        { id: 3, name: "List, Scrollbar and FlatList", desc: "fetching data form user api and showing in list and performing simple operation", compLinkName: "listLesson" },
+        { id: 1, name: "First Lesson", difficulty: "easiest", desc: "Intro of react native simple componets and styles", compLinkName: "First Lesson" },
+        { id: 2, name: "States and inputs Lesson", difficulty: "easiest", desc: "react states and how to take input from user", compLinkName: "States and inputs Lesson" },
+        { id: 3, name: "List, Scrollbar and FlatList", difficulty: "easy", desc: "fetching data form user api and showing in list and performing simple operation", compLinkName: "List, Scrollbar and FlatList" },
+        { id: 4, name: "Drawer and Stack navigation", difficulty: "normal", desc: "combination of drawer and stack navigation to navigatate throughout applicaion", compLinkName: () => { navigation.openDrawer() } },
     ]);
 
     return (
@@ -19,9 +20,10 @@ export default function LessonListComp({ navigation }) {
                         <View style={globalStyles.lessonDetails}>
                             <Text style={globalStyles.textTitle}>{item.name}</Text>
                             <Text style={globalStyles.textSubtitle}>{item.desc}</Text>
+                            <View style={globalStyles.rowVerticalCenter}><Text style={globalStyles.textSubtitle}>{"Diffuculty :"}</Text><Image style={globalStyles.diffcultyIcon} source={images.difficultyIcons[item.difficulty]} /></View>
                         </View>
                         <View style={globalStyles.lessonBtnView}>
-                            <Button title={"Go"} onPress={() => navigation.navigate(item.name)} />
+                            <Button title={"Go"} onPress={() => typeof item.compLinkName == "function" ? item.compLinkName() : navigation.navigate(item.compLinkName)} />
                         </View>
                     </View>);
                 }}

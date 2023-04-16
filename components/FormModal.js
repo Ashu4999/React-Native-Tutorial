@@ -103,7 +103,7 @@ export default function FormModal({ openModal, setOpenModal }) {
                                     <YupInputComp
                                         ComponentToRender={<TextInput
                                             multiline
-                                            numberOfLines={4}
+                                            maxHeight={120}
                                             style={globalStyles.formInputStyle}
                                             placeholder="Address"
                                             onChangeText={formProps.handleChange("address")}

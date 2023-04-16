@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Navigator from './routes/lessonDrawer';
+import Navigator from './routes/newLessonDrawer';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import 'react-native-gesture-handler';

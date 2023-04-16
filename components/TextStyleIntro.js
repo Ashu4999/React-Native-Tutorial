@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { Text, View } from 'react-native';
 import { globalStyles } from '../styles/global';
 
 export default function TextStyleIntro() {

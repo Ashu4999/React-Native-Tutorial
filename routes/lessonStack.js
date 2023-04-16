@@ -1,7 +1,7 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import TextStyleIntro from "../components/TextStyleIntro";
-import { StateTutComp, ListScrollComp, LessonListComp } from './components'
+import { StateTutComp, ListScrollComp, LessonListComp } from '../components'
 
 const screens = {
     lessonListComp: { screen: LessonListComp, navigationOptions: { title: "Lesson List" } },

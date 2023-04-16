@@ -10,7 +10,7 @@ export default function LessonListComp({ navigation }) {
         { id: 2, name: "States and inputs Lesson", difficulty: "easiest", desc: "react states and how to take input from user", compLinkName: "States and inputs Lesson" },
         { id: 3, name: "List, Scrollbar and FlatList", difficulty: "easy", desc: "fetching data form user api and showing in list and performing simple operation", compLinkName: "List, Scrollbar and FlatList" },
         { id: 4, name: "Drawer and Stack navigation", difficulty: "normal", desc: "combination of drawer and stack navigation to navigatate throughout applicaion", compLinkName: () => { navigation.openDrawer() } },
-        { id: 5, name: "Modat and Form", difficulty: "normal", desc: "Simple Form by using formik and yup library for validation displaying in modal", compLinkName: () => { setOpenModal(true) } },
+        { id: 5, name: "Modal and Form", difficulty: "normal", desc: "Simple Form by using formik and yup library for validation displaying in modal", compLinkName: () => { setOpenModal(true) } },
     ]);
 
     return (

@@ -21,7 +21,7 @@ export default function LessonListComp({ navigation }) {
                             <Text style={globalStyles.textSubtitle}>{item.desc}</Text>
                         </View>
                         <View style={globalStyles.lessonBtnView}>
-                            <Button title={"Go"} onPress={() => navigation.navigate(item.compLinkName)} />
+                            <Button title={"Go"} onPress={() => navigation.navigate(item.name)} />
                         </View>
                     </View>);
                 }}

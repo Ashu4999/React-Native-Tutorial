@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import Navigator from './routes/lessonStack';
+import Navigator from './routes/lessonDrawer';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import 'react-native-gesture-handler';
 
 const getFonts = () => {
   return Font.loadAsync({

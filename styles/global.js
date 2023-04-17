@@ -120,6 +120,7 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         marginHorizontal: 20,
+        marginVertical: 40,
     },
     close: { width: "100%", textAlign: "right", marginBottom: 10 },
     formInputStyle: {
@@ -128,6 +129,26 @@ export const globalStyles = StyleSheet.create({
         padding: 10,
         width: "100%",
     },
+
+    //FlatButton
+    button: {
+        borderRadius: 8,
+        paddingVertical: 14,
+        paddingHorizontal: 10,
+        backgroundColor: '#f01d71',
+    },
+    buttonText: {
+        color: 'white',
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        fontSize: 16,
+        textAlign: 'center',
+    },
+    error: {
+        color: "#990000",
+        fontFamily: "nunito-bold"
+    },
+
     //extraa
     rowVerticalCenter: { flexDirection: "row", alignItems: "center", gap: 5 }
 });

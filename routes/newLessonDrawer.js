@@ -18,7 +18,7 @@ export default function NewLessonDrawer() {
     return (
         <NavigationContainer>
             <Drawer.Navigator initialRouteName="Assignment" screenOptions={screenOptionsObj}>
-                <Drawer.Screen name="Assignment" component={NewLessonStack} />
+                <Drawer.Screen name="Assignments" component={NewLessonStack} />
                 <Drawer.Screen name="About" component={About} />
             </Drawer.Navigator>
         </NavigationContainer>
